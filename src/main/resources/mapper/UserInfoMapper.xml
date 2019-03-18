@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gewei.www.ims1802.user.mapper.UserInfoMapper">
+  <resultMap id="BaseResultMap" type="com.gewei.www.common.model.UserInfo">
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_account" jdbcType="VARCHAR" property="userAccount" />
+    <result column="user_password" jdbcType="VARCHAR" property="userPassword" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="user_email" jdbcType="VARCHAR" property="userEmail" />
+    <result column="role_id" jdbcType="INTEGER" property="roleId" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="first_create_by" jdbcType="INTEGER" property="firstCreateBy" />
+    <result column="first_create_date" jdbcType="TIMESTAMP" property="firstCreateDate" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="last_update_by" jdbcType="INTEGER" property="lastUpdateBy" />
+    <result column="last_update_date" jdbcType="TIMESTAMP" property="lastUpdateDate" />
+  	<result column="user_status" jdbcType="VARCHAR" property="userStatus" />
+  	<result column="content_value" jdbcType="VARCHAR" property="contentValue" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id, user_account, user_password, nick_name,user_email role_id, first_create_by, first_create_date, 
+    description, last_update_by, last_update_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_info
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_info
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="user_id" keyProperty="userId" parameterType="com.gewei.www.common.model.UserInfo" useGeneratedKeys="true">
+    insert into user_info (user_account, user_password, nick_name, 
+      role_id, first_create_by, first_create_date, 
+      description, last_update_by, last_update_date,user_email
+      )
+    values (#{userAccount,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
+      #{roleId,jdbcType=INTEGER}, #{firstCreateBy,jdbcType=INTEGER}, #{firstCreateDate,jdbcType=TIMESTAMP}, 
+      #{description,jdbcType=VARCHAR}, #{lastUpdateBy,jdbcType=INTEGER}, #{lastUpdateDate,jdbcType=TIMESTAMP},#{userEmail,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="user_id" keyProperty="userId" parameterType="com.gewei.www.common.model.UserInfo" useGeneratedKeys="true">
+    insert into user_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userAccount != null">
+        user_account,
+      </if>
+      <if test="userPassword != null">
+        user_password,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+      <if test="userEmail != null">
+        user_email,
+      </if>
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="firstCreateBy != null">
+        first_create_by,
+      </if>
+      <if test="firstCreateDate != null">
+        first_create_date,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by,
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userAccount != null">
+        #{userAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null">
+        #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null">
+        user_email,
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="firstCreateBy != null">
+        #{firstCreateBy,jdbcType=INTEGER},
+      </if>
+      <if test="firstCreateDate != null">
+        #{firstCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateBy != null">
+        #{lastUpdateBy,jdbcType=INTEGER},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gewei.www.common.model.UserInfo">
+    update user_info
+    <set>
+      <if test="userAccount != null">
+        user_account = #{userAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null">
+        user_password = #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null">
+        role_id = #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="userEmail != null">
+        user_email = #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userStatus != null">
+        user_status = #{userStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="firstCreateBy != null">
+        first_create_by = #{firstCreateBy,jdbcType=INTEGER},
+      </if>
+      <if test="firstCreateDate != null">
+        first_create_date = #{firstCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by = #{lastUpdateBy,jdbcType=INTEGER},
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gewei.www.common.model.UserInfo">
+    update user_info
+    set user_account = #{userAccount,jdbcType=VARCHAR},
+      user_password = #{userPassword,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      role_id = #{roleId,jdbcType=INTEGER},
+      first_create_by = #{firstCreateBy,jdbcType=INTEGER},
+      first_create_date = #{firstCreateDate,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=VARCHAR},
+      last_update_by = #{lastUpdateBy,jdbcType=INTEGER},
+      last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+
+  <!-- 【用户登录】【宋鹏-18091】【武汉】【2018-09-11】 -->
+  <select id="login" 
+  parameterType="com.gewei.www.common.model.UserInfo" 
+  resultMap="BaseResultMap">
+    select 
+    a.user_id, a.user_account, a.user_password, a.nick_name, a.role_id, a.first_create_by, a.first_create_date, 
+    a.description, a.last_update_by, a.last_update_date, b.role_name, a.user_status, c.content_value
+    from user_info a 
+    join role_info b on a.role_id = b.role_id
+    join language_content c on c.content_key = b.role_name
+    where a.user_account = #{userAccount,jdbcType=VARCHAR}
+    AND c.type_code = #{locale,jdbcType=VARCHAR}
+  </select>
+    
+  <!-- 【用户信息多条查询】【宋鹏-18091】【武汉】【2018-09-11】 -->
+  <select id="findList" 
+  parameterType="com.gewei.www.common.model.UserInfo" 
+  resultMap="BaseResultMap">
+    select 
+	a.user_id,
+	a.user_account,
+	a.user_password,
+	a.nick_name,
+	a.user_email,
+	a.role_id,
+	a.first_create_by,
+	a.first_create_date,
+	a.description,
+	a.last_update_by,
+	a.last_update_date,
+	b.role_name,
+	c.content_value,
+	a.user_status 
+    from user_info a 
+    join role_info b on a.role_id = b.role_id
+    join language_content c on b.role_name = c.content_key
+    <where>
+      <if test="beginDate != null">
+        a.first_create_date <![CDATA[ >= ]]> #{beginDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="endDate != null">
+        AND a.first_create_date <![CDATA[ <= ]]> #{endDate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="userAccount != null and userAccount != ''">
+        AND  a.user_account like CONCAT('%', #{userAccount,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="nickName != null and nickName != ''">
+        AND  a.nick_name like CONCAT('%', #{nickName,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="roleId != null and roleId != ''">
+        AND a.role_id = #{roleId,jdbcType=INTEGER}
+      </if>
+      <if test="locale != null and locale != ''">
+        AND c.type_code = #{locale,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+  <select id="findUserByAccount" resultType="Integer" parameterType="String">
+  	 select user_id from user_info where user_account = #{userAccount,jdbcType=VARCHAR}
+  </select>
+	<select id="findYWList"
+		parameterType="com.gewei.www.common.model.UserInfo"
+		resultMap="BaseResultMap">
+		select
+		a.user_id,
+		a.user_account,
+		a.user_password,
+		a.nick_name,
+		a.user_email,
+		a.role_id,
+		a.first_create_by,
+		a.first_create_date,
+		a.description,
+		a.last_update_by,
+		a.last_update_date,
+		b.role_name
+		from user_info a join role_info b on a.role_id = b.role_id
+		<if test="roleName != null">
+			and b.role_name like CONCAT('%', #{roleName,jdbcType=VARCHAR}, '%')
+		</if>
+	</select>
+  
+  
+  
+  
+  
+  
+  
+  
+</mapper>

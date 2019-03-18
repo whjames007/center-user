@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gewei.www.ims1802.user.mapper.SuggestionInfoMapper">
+  <resultMap id="BaseResultMap" type="com.gewei.www.ims1802.user.model.SuggestionInfo">
+    <id column="suggestion_id" jdbcType="INTEGER" property="suggestionId" />
+    <result column="suggestion_name" jdbcType="VARCHAR" property="suggestionName" />
+    <result column="suggestion_type" jdbcType="VARCHAR" property="suggestionType" />
+    <result column="suggestion_status" jdbcType="VARCHAR" property="suggestionStatus" />
+    <result column="suggest_user_id" jdbcType="INTEGER" property="suggestUserId" />
+    <result column="suggestion_date" jdbcType="TIMESTAMP" property="suggestionDate" />
+    <result column="suggestion_content" jdbcType="VARCHAR" property="suggestionContent" />
+    <result column="first_create_by" jdbcType="INTEGER" property="firstCreateBy" />
+    <result column="first_create_date" jdbcType="TIMESTAMP" property="firstCreateDate" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="last_update_by" jdbcType="INTEGER" property="lastUpdateBy" />
+    <result column="last_update_date" jdbcType="TIMESTAMP" property="lastUpdateDate" />
+    <result column="user_account" jdbcType="VARCHAR" property="userAccount" />
+  	
+  </resultMap>
+  <sql id="Base_Column_List">
+    suggestion_id, suggestion_name, suggestion_type, suggestion_status, suggest_user_id, 
+    suggestion_date, suggestion_content, first_create_by, first_create_date, description, 
+    last_update_by, last_update_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from suggestion_info
+    where suggestion_id = #{suggestionId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from suggestion_info
+    where suggestion_id = #{suggestionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="suggestion_id" keyProperty="suggestionId" parameterType="com.gewei.www.ims1802.user.model.SuggestionInfo" useGeneratedKeys="true">
+    insert into suggestion_info (suggestion_name, suggestion_type, suggestion_status, 
+      suggest_user_id, suggestion_date, suggestion_content, 
+      first_create_by, first_create_date, description, 
+      last_update_by, last_update_date)
+    values (#{suggestionName,jdbcType=VARCHAR}, #{suggestionType,jdbcType=VARCHAR}, #{suggestionStatus,jdbcType=VARCHAR}, 
+      #{suggestUserId,jdbcType=INTEGER}, #{suggestionDate,jdbcType=TIMESTAMP}, #{suggestionContent,jdbcType=VARCHAR}, 
+      #{firstCreateBy,jdbcType=INTEGER}, #{firstCreateDate,jdbcType=TIMESTAMP}, #{description,jdbcType=VARCHAR}, 
+      #{lastUpdateBy,jdbcType=INTEGER}, #{lastUpdateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="suggestion_id" keyProperty="suggestionId" parameterType="com.gewei.www.ims1802.user.model.SuggestionInfo" useGeneratedKeys="true">
+    insert into suggestion_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="suggestionName != null">
+        suggestion_name,
+      </if>
+      <if test="suggestionType != null">
+        suggestion_type,
+      </if>
+      <if test="suggestionStatus != null">
+        suggestion_status,
+      </if>
+      <if test="suggestUserId != null">
+        suggest_user_id,
+      </if>
+      <if test="suggestionDate != null">
+        suggestion_date,
+      </if>
+      <if test="suggestionContent != null">
+        suggestion_content,
+      </if>
+      <if test="firstCreateBy != null">
+        first_create_by,
+      </if>
+      <if test="firstCreateDate != null">
+        first_create_date,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by,
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="suggestionName != null">
+        #{suggestionName,jdbcType=VARCHAR},
+      </if>
+      <if test="suggestionType != null">
+        #{suggestionType,jdbcType=VARCHAR},
+      </if>
+      <if test="suggestionStatus != null">
+        #{suggestionStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="suggestUserId != null">
+        #{suggestUserId,jdbcType=INTEGER},
+      </if>
+      <if test="suggestionDate != null">
+        #{suggestionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="suggestionContent != null">
+        #{suggestionContent,jdbcType=VARCHAR},
+      </if>
+      <if test="firstCreateBy != null">
+        #{firstCreateBy,jdbcType=INTEGER},
+      </if>
+      <if test="firstCreateDate != null">
+        #{firstCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateBy != null">
+        #{lastUpdateBy,jdbcType=INTEGER},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gewei.www.ims1802.user.model.SuggestionInfo">
+    update suggestion_info
+    <set>
+      <if test="suggestionName != null">
+        suggestion_name = #{suggestionName,jdbcType=VARCHAR},
+      </if>
+      <if test="suggestionType != null">
+        suggestion_type = #{suggestionType,jdbcType=VARCHAR},
+      </if>
+      <if test="suggestionStatus != null">
+        suggestion_status = #{suggestionStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="suggestUserId != null">
+        suggest_user_id = #{suggestUserId,jdbcType=INTEGER},
+      </if>
+      <if test="suggestionDate != null">
+        suggestion_date = #{suggestionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="suggestionContent != null">
+        suggestion_content = #{suggestionContent,jdbcType=VARCHAR},
+      </if>
+      <if test="firstCreateBy != null">
+        first_create_by = #{firstCreateBy,jdbcType=INTEGER},
+      </if>
+      <if test="firstCreateDate != null">
+        first_create_date = #{firstCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by = #{lastUpdateBy,jdbcType=INTEGER},
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where suggestion_id = #{suggestionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gewei.www.ims1802.user.model.SuggestionInfo">
+    update suggestion_info
+    set suggestion_name = #{suggestionName,jdbcType=VARCHAR},
+      suggestion_type = #{suggestionType,jdbcType=VARCHAR},
+      suggestion_status = #{suggestionStatus,jdbcType=VARCHAR},
+      suggest_user_id = #{suggestUserId,jdbcType=INTEGER},
+      suggestion_date = #{suggestionDate,jdbcType=TIMESTAMP},
+      suggestion_content = #{suggestionContent,jdbcType=VARCHAR},
+      first_create_by = #{firstCreateBy,jdbcType=INTEGER},
+      first_create_date = #{firstCreateDate,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=VARCHAR},
+      last_update_by = #{lastUpdateBy,jdbcType=INTEGER},
+      last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP}
+    where suggestion_id = #{suggestionId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="findSuggestionListByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+       select 
+    a.suggestion_id, a.suggestion_name, a.suggestion_type, a.suggestion_status, a.suggest_user_id, 
+    a.suggestion_date, a.suggestion_content, a.first_create_by, a.first_create_date, a.description, 
+    a.last_update_by, a.last_update_date,b.user_account
+    from suggestion_info a
+    join user_info b on a.suggest_user_id = b.user_id
+       where a.suggest_user_id = #{suggestUserId,jdbcType=INTEGER}
+  </select>
+   <select id="findSuggestionList"  resultMap="BaseResultMap">
+       select 
+    a.suggestion_id, a.suggestion_name, a.suggestion_type, a.suggestion_status, a.suggest_user_id, 
+    a.suggestion_date, a.suggestion_content, a.first_create_by, a.first_create_date, a.description, 
+    a.last_update_by, a.last_update_date,b.user_account
+    from suggestion_info a
+    join user_info b on a.suggest_user_id = b.user_id
+  </select>
+</mapper>

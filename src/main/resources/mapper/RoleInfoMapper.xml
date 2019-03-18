@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.gewei.www.ims1802.user.mapper.RoleInfoMapper">
+	<resultMap id="BaseResultMap"
+		type="com.gewei.www.ims1802.user.model.RoleInfo">
+		<id column="role_id" jdbcType="INTEGER" property="roleId" />
+		<result column="role_name" jdbcType="VARCHAR"
+			property="roleName" />
+		<result column="role_desc" jdbcType="VARCHAR"
+			property="roleDesc" />
+		<result column="first_create_by" jdbcType="INTEGER"
+			property="firstCreateBy" />
+		<result column="first_create_date" jdbcType="TIMESTAMP"
+			property="firstCreateDate" />
+		<result column="description" jdbcType="VARCHAR"
+			property="description" />
+		<result column="last_update_by" jdbcType="INTEGER"
+			property="lastUpdateBy" />
+		<result column="last_update_date" jdbcType="TIMESTAMP"
+			property="lastUpdateDate" />
+		<result column="content_value" jdbcType="VARCHAR"
+			property="contentValue" />
+		<result column="type_code" jdbcType="VARCHAR" property="locale" />
+		
+	</resultMap>
+	<sql id="Base_Column_List">
+		role_id, role_name, role_desc, first_create_by,
+		first_create_date,
+		description, last_update_by,
+		last_update_date
+	</sql>
+	<select id="selectByPrimaryKey"
+		parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from role_info
+		where role_id = #{roleId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey"
+		parameterType="java.lang.Integer">
+		delete from role_info
+		where role_id =
+		#{roleId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert"
+		parameterType="com.gewei.www.ims1802.user.model.RoleInfo"
+		keyColumn="role_id" keyProperty="roleId" useGeneratedKeys="true">
+		insert into
+		role_info (role_name, role_desc,
+		first_create_by, first_create_date,
+		description,
+		last_update_by, last_update_date)
+		values
+		(#{roleName,jdbcType=VARCHAR}, #{roleDesc,jdbcType=VARCHAR},
+		#{firstCreateBy,jdbcType=INTEGER},
+		#{firstCreateDate,jdbcType=TIMESTAMP},
+		#{description,jdbcType=VARCHAR},
+		#{lastUpdateBy,jdbcType=INTEGER},
+		#{lastUpdateDate,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.gewei.www.ims1802.user.model.RoleInfo">
+		insert into role_info
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="roleId != null">
+				role_id,
+			</if>
+			<if test="roleName != null">
+				role_name,
+			</if>
+			<if test="roleDesc != null">
+				role_desc,
+			</if>
+			<if test="firstCreateBy != null">
+				first_create_by,
+			</if>
+			<if test="firstCreateDate != null">
+				first_create_date,
+			</if>
+			<if test="description != null">
+				description,
+			</if>
+			<if test="lastUpdateBy != null">
+				last_update_by,
+			</if>
+			<if test="lastUpdateDate != null">
+				last_update_date,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="roleId != null">
+				#{roleId,jdbcType=INTEGER},
+			</if>
+			<if test="roleName != null">
+				#{roleName,jdbcType=VARCHAR},
+			</if>
+			<if test="roleDesc != null">
+				#{roleDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="firstCreateBy != null">
+				#{firstCreateBy,jdbcType=INTEGER},
+			</if>
+			<if test="firstCreateDate != null">
+				#{firstCreateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="description != null">
+				#{description,jdbcType=VARCHAR},
+			</if>
+			<if test="lastUpdateBy != null">
+				#{lastUpdateBy,jdbcType=INTEGER},
+			</if>
+			<if test="lastUpdateDate != null">
+				#{lastUpdateDate,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.gewei.www.ims1802.user.model.RoleInfo">
+		update role_info
+		<set>
+			<if test="roleName != null">
+				role_name = #{roleName,jdbcType=VARCHAR},
+			</if>
+			<if test="roleDesc != null">
+				role_desc = #{roleDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="firstCreateBy != null">
+				first_create_by = #{firstCreateBy,jdbcType=INTEGER},
+			</if>
+			<if test="firstCreateDate != null">
+				first_create_date =
+				#{firstCreateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="description != null">
+				description = #{description,jdbcType=VARCHAR},
+			</if>
+			<if test="lastUpdateBy != null">
+				last_update_by = #{lastUpdateBy,jdbcType=INTEGER},
+			</if>
+			<if test="lastUpdateDate != null">
+				last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where role_id = #{roleId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.gewei.www.ims1802.user.model.RoleInfo">
+		update role_info
+		set role_name =
+		#{roleName,jdbcType=VARCHAR},
+		role_desc = #{roleDesc,jdbcType=VARCHAR},
+		first_create_by = #{firstCreateBy,jdbcType=INTEGER},
+		first_create_date
+		= #{firstCreateDate,jdbcType=TIMESTAMP},
+		description =
+		#{description,jdbcType=VARCHAR},
+		last_update_by =
+		#{lastUpdateBy,jdbcType=INTEGER},
+		last_update_date =
+		#{lastUpdateDate,jdbcType=TIMESTAMP}
+		where role_id =
+		#{roleId,jdbcType=INTEGER}
+	</update>
+
+	<select id="findList"
+		parameterType="com.gewei.www.ims1802.user.model.RoleInfo"
+		resultMap="BaseResultMap">
+		SELECT
+	lc2.content_value AS role_desc,
+	lc1.content_value AS role_name,
+	r.role_id,
+	r.first_create_by,
+	r.first_create_date,
+	r.description,
+	r.last_update_by,
+	r.last_update_date,
+	u1.nick_name AS firstCreateUser,
+    u2.nick_name AS lastUpdateUser 
+FROM
+	role_info r
+JOIN language_content lc1 ON lc1.type_code=#{locale} and lc1.content_key = r.role_name
+JOIN language_content lc2 ON lc2.type_code=#{locale} and lc2.content_key = r.role_desc
+JOIN user_info u1 ON u1.user_id = r.first_create_by
+JOIN user_info u2 ON u2.user_id = r.last_update_by 
+<where>
+<if test="roleName != null and roleName != ''">
+ lc1.content_value like CONCAT('%', #{roleName,jdbcType=VARCHAR}, '%')
+</if>
+<if test="beginDate != null">
+ AND r.first_create_date <![CDATA[ >= ]]> #{beginDate,jdbcType=TIMESTAMP}
+</if>
+<if test="endDate != null">
+  AND r.first_create_date <![CDATA[ <= ]]> #{endDate,jdbcType=TIMESTAMP}
+</if>
+</where>		
+order by r.first_create_date desc
+	</select>
+
+
+</mapper>

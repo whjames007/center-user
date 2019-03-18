@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gewei.www.ims1802.user.mapper.PrivilegeInfoMapper">
+  <resultMap id="BaseResultMap" type="com.gewei.www.ims1802.user.model.PrivilegeInfo">
+    <id column="privilege_id" jdbcType="INTEGER" property="privilegeId" />
+    <result column="privilege_name" jdbcType="VARCHAR" property="privilegeName" />
+    <result column="privilege_desc" jdbcType="VARCHAR" property="privilegeDesc" />
+    <result column="first_create_by" jdbcType="INTEGER" property="firstCreateBy" />
+    <result column="first_create_date" jdbcType="TIMESTAMP" property="firstCreateDate" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="last_update_by" jdbcType="INTEGER" property="lastUpdateBy" />
+    <result column="last_update_date" jdbcType="TIMESTAMP" property="lastUpdateDate" />
+    <result column="menu_id" jdbcType="INTEGER" property="menuId" />
+    <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
+    <result column="menu_type" jdbcType="VARCHAR" property="menuType" />
+    <result column="content_value" jdbcType="VARCHAR" property="contentValue" />
+    <result column="content_desc" jdbcType="VARCHAR" property="contentDesc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    privilege_id, privilege_name, privilege_desc, first_create_by, first_create_date, 
+    description, last_update_by, last_update_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from privilege_info
+    where privilege_id = #{privilegeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from privilege_info
+    where privilege_id = #{privilegeId,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" keyColumn="privilege_id" keyProperty="privilegeId" parameterType="com.gewei.www.ims1802.user.model.PrivilegeInfo" useGeneratedKeys="true">
+    insert into privilege_info (privilege_name, privilege_desc, first_create_by, 
+      first_create_date, description, last_update_by, 
+      last_update_date)
+    values (#{privilegeName,jdbcType=VARCHAR}, #{privilegeDesc,jdbcType=VARCHAR}, #{firstCreateBy,jdbcType=INTEGER}, 
+      #{firstCreateDate,jdbcType=TIMESTAMP}, #{description,jdbcType=VARCHAR}, #{lastUpdateBy,jdbcType=INTEGER}, 
+      #{lastUpdateDate,jdbcType=TIMESTAMP})
+  </insert>
+  
+  <insert id="insertSelective" keyColumn="privilege_id" keyProperty="privilegeId" parameterType="com.gewei.www.ims1802.user.model.PrivilegeInfo" useGeneratedKeys="true">
+    insert into privilege_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="privilegeName != null">
+        privilege_name,
+      </if>
+      <if test="privilegeDesc != null">
+        privilege_desc,
+      </if>
+      <if test="firstCreateBy != null">
+        first_create_by,
+      </if>
+      <if test="firstCreateDate != null">
+        first_create_date,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by,
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="privilegeName != null">
+        #{privilegeName,jdbcType=VARCHAR},
+      </if>
+      <if test="privilegeDesc != null">
+        #{privilegeDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="firstCreateBy != null">
+        #{firstCreateBy,jdbcType=INTEGER},
+      </if>
+      <if test="firstCreateDate != null">
+        #{firstCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateBy != null">
+        #{lastUpdateBy,jdbcType=INTEGER},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gewei.www.ims1802.user.model.PrivilegeInfo">
+    update privilege_info
+    <set>
+      <if test="privilegeName != null">
+        privilege_name = #{privilegeName,jdbcType=VARCHAR},
+      </if>
+      <if test="privilegeDesc != null">
+        privilege_desc = #{privilegeDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="firstCreateBy != null">
+        first_create_by = #{firstCreateBy,jdbcType=INTEGER},
+      </if>
+      <if test="firstCreateDate != null">
+        first_create_date = #{firstCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by = #{lastUpdateBy,jdbcType=INTEGER},
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where privilege_id = #{privilegeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gewei.www.ims1802.user.model.PrivilegeInfo">
+    update privilege_info
+    set privilege_name = #{privilegeName,jdbcType=VARCHAR},
+      privilege_desc = #{privilegeDesc,jdbcType=VARCHAR},
+      first_create_by = #{firstCreateBy,jdbcType=INTEGER},
+      first_create_date = #{firstCreateDate,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=VARCHAR},
+      last_update_by = #{lastUpdateBy,jdbcType=INTEGER},
+      last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP}
+    where privilege_id = #{privilegeId,jdbcType=INTEGER}
+  </update>
+  
+  	<select id="findList"
+		parameterType="com.gewei.www.ims1802.user.model.PrivilegeInfo"
+		resultMap="BaseResultMap">
+SELECT
+	a.privilege_id,
+	a.privilege_name,
+	a.privilege_desc,
+	IFNULL(c.menu_id ,- 999) AS menu_id,
+	f.content_value AS menu_name,
+	c.menu_type,
+	d.content_value,
+	e.content_value AS content_desc,
+	a.last_update_date
+FROM
+	privilege_info a
+LEFT JOIN privilege_relation_menu b ON a.privilege_id = b.privilege_id
+LEFT JOIN menu_info c ON b.menu_id = c.menu_id
+LEFT JOIN language_content d ON a.privilege_name = d.content_key
+AND d.content_group = 'PRIVILEGE-NAME'
+AND d.type_code = #{locale,jdbcType=VARCHAR}
+LEFT JOIN language_content e ON a.privilege_desc = e.content_key
+AND e.content_group = 'PRIVILEGE-DESC'
+AND e.type_code = #{locale,jdbcType=VARCHAR}
+LEFT JOIN language_content f ON c.menu_name = f.content_key
+AND f.content_group = 'MENU-NAME'
+AND f.type_code = #{locale,jdbcType=VARCHAR}
+<if test="privilegeName != null and privilegeName != ''">
+	where d.content_value like CONCAT('%', #{privilegeName,jdbcType=VARCHAR}, '%')
+</if>
+	</select>
+	
+	
+	
+	
+	
+	
+	
+</mapper>
