@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gewei.www.ims1802.user.mapper.MenuInfoMapper">
+  <resultMap id="BaseResultMap" type="com.gewei.www.ims1802.user.model.MenuInfo">
+    <id column="menu_id" jdbcType="INTEGER" property="menuId" />
+    <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
+    <result column="menu_icon" jdbcType="VARCHAR" property="menuIcon" />
+    <result column="menu_url" jdbcType="VARCHAR" property="menuUrl" />
+    <result column="menu_type" jdbcType="VARCHAR" property="menuType" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="parent_name" jdbcType="VARCHAR" property="parentName" />
+    <result column="menu_desc" jdbcType="VARCHAR" property="menuDesc" />
+    <result column="first_create_by" jdbcType="INTEGER" property="firstCreateBy" />
+    <result column="first_create_date" jdbcType="TIMESTAMP" property="firstCreateDate" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="last_update_by" jdbcType="INTEGER" property="lastUpdateBy" />
+    <result column="last_update_date" jdbcType="TIMESTAMP" property="lastUpdateDate" />
+    <result column="locale" jdbcType="VARCHAR" property="locale" />
+    <result column="content_value" jdbcType="VARCHAR" property="contentValue" />
+    <result column="content_desc" jdbcType="VARCHAR" property="contentDesc" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    menu_id, menu_name, menu_icon, menu_url, menu_type, parent_id, menu_desc, first_create_by, 
+    first_create_date, description, last_update_by, last_update_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from menu_info
+    where menu_id = #{menuId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from menu_info
+    where menu_id = #{menuId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="menu_id" keyProperty="menuId" parameterType="com.gewei.www.ims1802.user.model.MenuInfo" useGeneratedKeys="true">
+    insert into menu_info (menu_name, menu_icon, menu_url, 
+      menu_type, parent_id, menu_desc, 
+      first_create_by, first_create_date, description, 
+      last_update_by, last_update_date)
+    values (#{menuName,jdbcType=VARCHAR}, #{menuIcon,jdbcType=VARCHAR}, #{menuUrl,jdbcType=VARCHAR}, 
+      #{menuType,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, #{menuDesc,jdbcType=VARCHAR}, 
+      #{firstCreateBy,jdbcType=INTEGER}, #{firstCreateDate,jdbcType=TIMESTAMP}, #{description,jdbcType=VARCHAR}, 
+      #{lastUpdateBy,jdbcType=INTEGER}, #{lastUpdateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="menu_id" keyProperty="menuId" parameterType="com.gewei.www.ims1802.user.model.MenuInfo" useGeneratedKeys="true">
+    insert into menu_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="menuName != null">
+        menu_name,
+      </if>
+      <if test="menuIcon != null">
+        menu_icon,
+      </if>
+      <if test="menuUrl != null">
+        menu_url,
+      </if>
+      <if test="menuType != null">
+        menu_type,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="menuDesc != null">
+        menu_desc,
+      </if>
+      <if test="firstCreateBy != null">
+        first_create_by,
+      </if>
+      <if test="firstCreateDate != null">
+        first_create_date,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by,
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="menuName != null">
+        #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuIcon != null">
+        #{menuIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="menuUrl != null">
+        #{menuUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="menuType != null">
+        #{menuType,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="menuDesc != null">
+        #{menuDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="firstCreateBy != null">
+        #{firstCreateBy,jdbcType=INTEGER},
+      </if>
+      <if test="firstCreateDate != null">
+        #{firstCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateBy != null">
+        #{lastUpdateBy,jdbcType=INTEGER},
+      </if>
+      <if test="lastUpdateDate != null">
+        #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gewei.www.ims1802.user.model.MenuInfo">
+    update menu_info
+    <set>
+      <if test="menuName != null">
+        menu_name = #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuIcon != null">
+        menu_icon = #{menuIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="menuUrl != null">
+        menu_url = #{menuUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="menuType != null">
+        menu_type = #{menuType,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="menuDesc != null">
+        menu_desc = #{menuDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="firstCreateBy != null">
+        first_create_by = #{firstCreateBy,jdbcType=INTEGER},
+      </if>
+      <if test="firstCreateDate != null">
+        first_create_date = #{firstCreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateBy != null">
+        last_update_by = #{lastUpdateBy,jdbcType=INTEGER},
+      </if>
+      <if test="lastUpdateDate != null">
+        last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where menu_id = #{menuId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gewei.www.ims1802.user.model.MenuInfo">
+    update menu_info
+    set menu_name = #{menuName,jdbcType=VARCHAR},
+      menu_icon = #{menuIcon,jdbcType=VARCHAR},
+      menu_url = #{menuUrl,jdbcType=VARCHAR},
+      menu_type = #{menuType,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      menu_desc = #{menuDesc,jdbcType=VARCHAR},
+      first_create_by = #{firstCreateBy,jdbcType=INTEGER},
+      first_create_date = #{firstCreateDate,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=VARCHAR},
+      last_update_by = #{lastUpdateBy,jdbcType=INTEGER},
+      last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP}
+    where menu_id = #{menuId,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 【递归查询专用resultMap父节点】【宋鹏-18091】【武汉】【2018-09-11】 -->
+  <resultMap id="ParentResultMap" type="com.gewei.www.ims1802.user.model.MenuInfo">
+    <id column="menu_id" jdbcType="INTEGER" property="menuId" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
+    <result column="menu_icon" jdbcType="VARCHAR" property="menuIcon" />
+    <result column="menu_url" jdbcType="VARCHAR" property="menuUrl" />
+    <result column="menu_type" jdbcType="VARCHAR" property="menuType" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="menu_desc" jdbcType="VARCHAR" property="menuDesc" />
+    <result column="content_value" jdbcType="VARCHAR" property="contentValue" />
+    <result column="type_code" jdbcType="VARCHAR" property="locale" />
+    <collection column="{menuId=menu_id,locale=type_code,userId=user_id}" property="children" javaType="java.util.ArrayList"
+       ofType="com.gewei.www.ims1802.user.model.MenuInfo" select="selectTreeChildren"/>
+  </resultMap>
+
+  <!-- 【递归查询专用resultMap子节点】【宋鹏-18091】【武汉】【2018-09-11】 -->
+  <resultMap id="ChildrenResultMap" type="com.gewei.www.ims1802.user.model.MenuInfo">
+    <id column="menu_id" jdbcType="INTEGER" property="menuId" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
+    <result column="menu_icon" jdbcType="VARCHAR" property="menuIcon" />
+    <result column="menu_url" jdbcType="VARCHAR" property="menuUrl" />
+    <result column="menu_type" jdbcType="VARCHAR" property="menuType" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="menu_desc" jdbcType="VARCHAR" property="menuDesc" />
+    <result column="content_value" jdbcType="VARCHAR" property="contentValue" />
+    <result column="type_code" jdbcType="VARCHAR" property="locale" />
+   <collection column="{menuId=menu_id,locale=type_code,userId=user_id}" property="children" javaType="java.util.ArrayList"
+     ofType="com.gewei.www.ims1802.user.model.MenuInfo" select="selectTreeChildren"/>
+  </resultMap>
+
+  <!-- 【递归查询专用select父节点】【宋鹏-18091】【武汉】【2018-09-11】 -->
+  <select id="selectTreeParent" resultMap="ParentResultMap"
+    parameterType="com.gewei.www.common.model.UserInfo">
+SELECT
+	*
+FROM
+	(
+		SELECT
+			a.user_id,
+			d.*,
+			lc.content_value,
+			lc.type_code 
+		FROM
+			menu_info d
+		JOIN privilege_relation_menu c ON d.menu_id = c.menu_id
+		JOIN role_relation_privilege b ON c.privilege_id = b.privilege_id
+		JOIN user_info a ON b.role_id = a.role_id 
+		JOIN language_content lc ON lc.content_key = d.menu_name
+		WHERE
+			a.user_id = #{userId}
+			and lc.type_code = #{locale}
+	) t
+WHERE
+	t.parent_id = 0
+  </select>
+  
+  <!-- 【递归查询专用select子节点】【宋鹏-18091】【武汉】【2018-09-11】 -->
+  <select id="selectTreeChildren" resultMap="ChildrenResultMap">
+SELECT
+	*
+FROM
+	(
+		SELECT
+			a.user_id,
+			d.*,
+			lc.content_value,
+			lc.type_code 
+		FROM
+			menu_info d
+		JOIN privilege_relation_menu c ON d.menu_id = c.menu_id
+		JOIN role_relation_privilege b ON c.privilege_id = b.privilege_id
+		JOIN user_info a ON b.role_id = a.role_id
+		JOIN language_content lc ON lc.content_key = d.menu_name
+		WHERE
+			a.user_id = #{userId}
+			and lc.type_code = #{locale}
+	) t
+WHERE
+	t.parent_id = #{menuId}
+ </select> 
+  
+	<select id="findList"
+		parameterType="com.gewei.www.ims1802.user.model.MenuInfo"
+		resultMap="BaseResultMap">
+SELECT
+	a.menu_id,
+	a.menu_name,
+	b.content_value,
+	a.menu_icon,
+	a.menu_url,
+	a.menu_type,
+	a.parent_id,
+	d.parent_name,
+	a.menu_desc,
+	c.content_value AS content_desc,
+	b.type_code AS locale,
+	a.first_create_by,
+	a.first_create_date,
+	a.description,
+	a.last_update_by,
+	a.last_update_date
+FROM
+	menu_info a
+LEFT JOIN language_content b ON a.menu_name = b.content_key
+LEFT JOIN language_content c ON a.menu_desc = c.content_key
+LEFT JOIN (
+	SELECT
+		d1.menu_id,
+		d2.content_value AS parent_name
+	FROM
+		menu_info d1
+	LEFT JOIN language_content d2 ON d1.menu_name = d2.content_key
+	WHERE
+		d2.type_code = #{locale,jdbcType=VARCHAR}
+) d ON a.parent_id = d.menu_id
+WHERE
+	b.type_code = #{locale,jdbcType=VARCHAR}
+AND c.type_code = #{locale,jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 【格式化单一菜单数据，补充描述国际化，补充上级菜单国际化】【宋鹏-18091】【武汉】【2019-01-25】 -->
+    <select id="format"
+		parameterType="com.gewei.www.ims1802.user.model.MenuInfo"
+		resultMap="BaseResultMap">
+SELECT
+	a.menu_id,
+	a.menu_name,
+	b.content_value,
+	a.menu_icon,
+	a.menu_url,
+	a.menu_type,
+	a.parent_id,
+	d.parent_name,
+	a.menu_desc,
+	c.content_value AS content_desc,
+	b.type_code AS locale,
+	a.first_create_by,
+	a.first_create_date,
+	a.description,
+	a.last_update_by,
+	a.last_update_date
+FROM
+	menu_info a
+LEFT JOIN language_content b ON a.menu_name = b.content_key AND b.type_code = #{locale,jdbcType=VARCHAR}
+LEFT JOIN language_content c ON a.menu_desc = c.content_key AND c.type_code = #{locale,jdbcType=VARCHAR}
+LEFT JOIN (
+	SELECT
+		d1.menu_id,
+		d2.content_value AS parent_name
+	FROM
+		menu_info d1
+	LEFT JOIN language_content d2 ON d1.menu_name = d2.content_key
+	WHERE
+		d2.type_code = #{locale,jdbcType=VARCHAR}
+) d ON a.parent_id = d.menu_id
+WHERE a.menu_id = #{menuId,jdbcType=INTEGER}
+	</select>
+	
+	<select id="parent"
+		parameterType="com.gewei.www.ims1802.user.model.MenuInfo"
+		resultMap="BaseResultMap">
+SELECT
+	a.menu_id,
+	a.menu_name,
+	b.content_value
+FROM
+	menu_info a
+JOIN language_content b ON a.menu_name = b.content_key
+AND b.type_code = #{locale,jdbcType=VARCHAR}
+WHERE
+	menu_type = #{menuType,jdbcType=VARCHAR}
+	</select>
+	
+	
+  <!-- 【菜单树专用resultMap父节点】【宋鹏-18091】【武汉】【2019-02-11】 -->
+  <resultMap id="ParentTreeMap" type="com.gewei.www.ims1802.user.model.MenuInfo">
+    <id column="menu_id" jdbcType="INTEGER" property="menuId" />
+    <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
+    <result column="menu_icon" jdbcType="VARCHAR" property="menuIcon" />
+    <result column="menu_url" jdbcType="VARCHAR" property="menuUrl" />
+    <result column="menu_type" jdbcType="VARCHAR" property="menuType" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="menu_desc" jdbcType="VARCHAR" property="menuDesc" />
+    <result column="content_value" jdbcType="VARCHAR" property="contentValue" />
+    <result column="type_code" jdbcType="VARCHAR" property="locale" />
+    <collection column="{menuId=menu_id,locale=type_code}" property="children" javaType="java.util.ArrayList"
+       ofType="com.gewei.www.ims1802.user.model.MenuInfo" select="treeManageChild"/>
+  </resultMap>
+
+  <!-- 【菜单树专用resultMap子节点】【宋鹏-18091】【武汉】【2019-02-11】 -->
+  <resultMap id="ChildrenTreeMap" type="com.gewei.www.ims1802.user.model.MenuInfo">
+    <id column="menu_id" jdbcType="INTEGER" property="menuId" />
+    <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
+    <result column="menu_icon" jdbcType="VARCHAR" property="menuIcon" />
+    <result column="menu_url" jdbcType="VARCHAR" property="menuUrl" />
+    <result column="menu_type" jdbcType="VARCHAR" property="menuType" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="menu_desc" jdbcType="VARCHAR" property="menuDesc" />
+    <result column="content_value" jdbcType="VARCHAR" property="contentValue" />
+    <result column="type_code" jdbcType="VARCHAR" property="locale" />
+   <collection column="{menuId=menu_id,locale=type_code}" property="children" javaType="java.util.ArrayList"
+     ofType="com.gewei.www.ims1802.user.model.MenuInfo" select="treeManageChild"/>
+  </resultMap>
+
+  <!-- 【菜单树专用select父节点】【宋鹏-18091】【武汉】【2019-02-11】 -->
+  <select id="treeManage" resultMap="ParentTreeMap"
+    parameterType="com.gewei.www.common.model.UserInfo">
+SELECT
+	a.*, b.content_value,
+	b.type_code
+FROM
+	menu_info a
+LEFT JOIN language_content b ON b.type_code = #{locale}
+AND b.content_group = 'MENU-NAME'
+AND b.content_key = a.menu_name
+WHERE
+	a.parent_id = 0
+  </select>
+  
+  <!-- 【菜单树专用select子节点】【宋鹏-18091】【武汉】【2019-02-11】 -->
+  <select id="treeManageChild" resultMap="ChildrenTreeMap">
+SELECT
+	a.*, b.content_value,
+	b.type_code
+FROM
+	menu_info a
+LEFT JOIN language_content b ON b.type_code = #{locale}
+AND b.content_group = 'MENU-NAME'
+AND b.content_key = a.menu_name
+WHERE
+	a.parent_id = #{menuId}
+ </select> 
+ 
+ <select id="findListWithMatched"
+	parameterType="com.gewei.www.ims1802.user.model.MenuInfo"
+	resultMap="BaseResultMap">
+SELECT
+	a.menu_id,
+	a.menu_name,
+	b.content_value,
+	IFNULL(c.menu_id ,- 999) AS parent_id
+FROM
+	menu_info a
+LEFT JOIN language_content b ON b.type_code = #{locale}
+AND b.content_group = 'MENU-NAME'
+AND b.content_key = a.menu_name
+LEFT JOIN privilege_relation_menu c ON a.menu_id = c.menu_id
+ </select>
+ 
+</mapper>

@@ -28,6 +28,12 @@
 		<pagehelper.version>1.2.7</pagehelper.version>
 	</properties>
 	<dependencies>
+		<!-- 正维公共包 -->
+		<dependency>
+			<groupId>com.gewei.www</groupId>
+			<artifactId>gewei-common</artifactId>
+			<version>${geweicommon.version}</version>
+		</dependency>
 		<!-- eureka客户端包 -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
