@@ -13,36 +13,38 @@
 		</commentGenerator>
 
 		<jdbcConnection
-			connectionURL="jdbc:mysql://127.0.0.1:3306/iot"
+			connectionURL="jdbc:mysql://127.0.0.1:3306/icrm"
 			driverClass="com.mysql.jdbc.Driver" password="aaa111" userId="root" />
 
 		<javaModelGenerator
-			targetPackage="com.gewei.www.user.model"
-			targetProject="user-center\src\main\java">
-			<!-- 设置一个根对象， 如果设置了这个根对象，那么生成的keyClass或者recordClass会继承这个类；在Table的rootClass属性中可以覆盖该选项 
-				注意：如果在key class或者record class中有root class相同的属性，MBG就不会重新生成这些属性了，包括： 1，属性名相同，类型相同，有相同的getter/setter方法； -->
+			targetPackage="com.changinye.www.user.model"
+			targetProject="center-user\src\main\java">
+			<!-- 设置一个根对象， 如果设置了这个根对象，那么生成的keyClass或者recordClass会继承这个类；
+			在Table的rootClass属性中可以覆盖该选项 
+				注意：如果在key class或者record class中有root class相同的属性，MBG就不会重新生成这些属性了，
+				包括： 1，属性名相同，类型相同，有相同的getter/setter方法； 
 			<property name="rootClass"
-				value="com.gewei.www.common.model.BaseModel" />
+				value="com.changinye.www.common.model.BaseModel" />-->
 			<!-- 设置是否在getter方法中，对String类型字段调用trim()方法 -->
 			<property name="trimStrings" value="fales" />
 		</javaModelGenerator>
 
 		<sqlMapGenerator
-			targetPackage="com.gewei.www.user.mapper"
-			targetProject="user-center\src\main\java" />
+			targetPackage="com.changinye.www.user.mapper"
+			targetProject="center-user\src\main\java" />
 
 		<javaClientGenerator
-			targetPackage="com.gewei.www.user.mapper"
-			targetProject="user-center\src\main\java"
+			targetPackage="com.changinye.www.user.mapper"
+			targetProject="center-user\src\main\java"
 			type="XMLMAPPER" />
 
-		<table schema="iot" tableName="role_info"
+		<table schema="icrm" tableName="user_info"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 			<!--domain字段的命名规则，false:默认为驼峰命名 true:按数据库真实命名 -->
 			<property name="useActualColumnNames" value="false" />
-			<generatedKey column="menu_id" sqlStatement="JDBC" />
+			<generatedKey column="user_id" sqlStatement="JDBC" />
 			<ignoreColumn column="attribute01"
 				delimitedColumnName="" />
 			<ignoreColumn column="attribute02"
@@ -62,8 +64,6 @@
 			<ignoreColumn column="attribute09"
 				delimitedColumnName="" />
 			<ignoreColumn column="attribute10"
-				delimitedColumnName="" />
-			<ignoreColumn column="attribute11"
 				delimitedColumnName="" />
 		</table>
 
